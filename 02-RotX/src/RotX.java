@@ -1,7 +1,6 @@
 public class RotX{
-    static final String stringMinuscules = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz";
-    static final char[] MINUSCULES = stringMinuscules.toCharArray();
-    static final char[] MAJUSCULES = stringMinuscules.toUpperCase().toCharArray();
+    static final char[] MINUSCULES = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz".toCharArray();
+    static final char[] MAJUSCULES = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz".toUpperCase().toCharArray();
 
     public static int posicioTrasposada(char c,char[] lletres, int desplaçament, boolean codifica){
         int posicio = -1;
