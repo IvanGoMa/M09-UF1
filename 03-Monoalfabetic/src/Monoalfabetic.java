@@ -2,7 +2,7 @@
 import java.util.*;
 public class Monoalfabetic {
     static final char[] ALFABET = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz".toUpperCase().toCharArray();
-    static final char[] PERMUTAT = permutaAlfabet(ALFABET);
+    private static final char[] PERMUTAT = permutaAlfabet(ALFABET);
 
     public static char[] permutaAlfabet(char[] alfabet){
         char[] alfabetPermutat = new char[alfabet.length];
@@ -58,9 +58,33 @@ public class Monoalfabetic {
     }
 
     public static void main(String[] args) {
+        System.out.print("Alfabet: ");
         System.out.println(ALFABET);
+        System.out.print("Alfabet permutat: ");
         System.out.println(PERMUTAT);
-        System.out.println(xifraMonoAlfa("Hola, Mr. Calçot!"));
-        System.out.println(desxifraMonoAlfa(xifraMonoAlfa("Hola, Mr. Calçot!")));
+        System.out.println();
+        String[] proves = {"ABC","XYZ","Hola, Mr.Calçot","Perdó, per tú què és?"};
+        String[] xifrades = new String[proves.length];
+        for (int i = 0; i < proves.length; i++) {
+            xifrades[i] = xifraMonoAlfa(proves[i]);
+        }
+        String [] desxifrades = new String[xifrades.length];
+        for (int i = 0; i < xifrades.length; i++) {
+            desxifrades[i] = desxifraMonoAlfa(xifrades[i]);
+        }
+        System.out.println("Xifrat");
+        System.out.println("-----");
+        System.out.println(String.format("%s --> %s",proves[0],xifrades[0]));
+        System.out.println(String.format("%s --> %s",proves[1],xifrades[1]));
+        System.out.println(String.format("%s --> %s",proves[2],xifrades[2]));
+        System.out.println(String.format("%s --> %s",proves[3],xifrades[3]));
+        System.out.println();
+        System.out.println("Desxifrat");
+        System.out.println("---------");
+        System.out.println(String.format("%s --> %s",xifrades[0],desxifrades[0]));
+        System.out.println(String.format("%s --> %s",xifrades[1],desxifrades[1]));
+        System.out.println(String.format("%s --> %s",xifrades[2],desxifrades[2]));
+        System.out.println(String.format("%s --> %s",xifrades[3],desxifrades[3]));
+
     }
 }
