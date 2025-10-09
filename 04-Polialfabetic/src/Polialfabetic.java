@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Polialfabetic {
     static final char[] ALFABET = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz".toUpperCase().toCharArray();
+    static char [] PERMUTAT;
     static private final long CLAU = 1234;
     static private Random random;
 
@@ -20,23 +21,23 @@ public class Polialfabetic {
 
     public static String xifraDesxifra(String msg, boolean xifra){
         StringBuilder xifrada = new StringBuilder();
-        char[] permutat = permutaAlfabet(ALFABET);
+        PERMUTAT = permutaAlfabet(ALFABET);
         for (int i = 0; i < msg.length(); i++) {
             char c = msg.charAt(i);
-            xifrada.append(retornaCaracterXifratODesxifrat(c, xifra, permutat));
-            permutat = permutaAlfabet(permutat);
+            xifrada.append(retornaCaracterXifratODesxifrat(c, xifra, PERMUTAT));
+            PERMUTAT = permutaAlfabet(PERMUTAT);
         }
         return xifrada.toString();
     }
 
-    public static char retornaCaracterXifratODesxifrat(char caracter, boolean xifra, char[] permutat){
+    public static char retornaCaracterXifratODesxifrat(char caracter, boolean xifra, char[] PERMUTAT){
         char[] alfabetOriginal =new char[ALFABET.length];
         char[] alfabetTraduit =new char[ALFABET.length];
         if (xifra){
             alfabetOriginal = ALFABET;
-            alfabetTraduit = permutat;
+            alfabetTraduit = PERMUTAT;
         } else{
-            alfabetOriginal = permutat;
+            alfabetOriginal = PERMUTAT;
             alfabetTraduit = ALFABET;
         }
         for (int i = 0; i < alfabetOriginal.length; i++) {
@@ -54,16 +55,16 @@ public class Polialfabetic {
     }
 
     public static char[] permutaAlfabet(char[] alfabet){
-        char[] alfabetPermutat = new char[alfabet.length];
+        char[] alfabetPERMUTAT = new char[alfabet.length];
         ArrayList<Character> llistaAlfabet= new ArrayList<Character>();
         for (Character c : alfabet){
             llistaAlfabet.add(c);
         }
         Collections.shuffle(llistaAlfabet,random);
         for (int i = 0; i < alfabet.length; i++) {
-            alfabetPermutat[i]= llistaAlfabet.get(i);
+            alfabetPERMUTAT[i]= llistaAlfabet.get(i);
         }
-        return alfabetPermutat;
+        return alfabetPERMUTAT;
     }
 
 
