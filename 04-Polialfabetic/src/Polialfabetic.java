@@ -18,38 +18,16 @@ public class Polialfabetic {
         return xifraDesxifra(msg, false);
     }
 
-    public static void main(String[] args){
-        String msgs[] = {"Test 01 àrbritre, coixí, Perímetre",
-        "Test 02 Taüll, DÍA, año",
-        "Test 03 Peça, Òrrius, Bòvila"};
-        String msgsXifrats[] = new String[msgs.length];
-        System.out.println("Xifratge:\n--------");
-        for (int i = 0; i < msgs.length; i++) {
-            initRandom(CLAU);
-            msgsXifrats[i] = xifraPoliAlfa(msgs[i]);
-            System.out.printf("%-34s -> %s%n", msgs[i], msgsXifrats[i]);
-
+    public static String xifraDesxifra(String msg, boolean xifra){
+        StringBuilder xifrada = new StringBuilder();
+        char[] permutat = permutaAlfabet(ALFABET);
+        for (int i = 0; i < msg.length(); i++) {
+            char c = msg.charAt(i);
+            xifrada.append(retornaCaracterXifratODesxifrat(c, xifra, permutat));
+            permutat = permutaAlfabet(permutat);
         }
-        System.out.println("Desxifratge:\n-----------");
-        for (int i = 0; i < msgs.length; i++) {
-            initRandom(CLAU);
-            String msg = desxifraPoliAlfa(msgsXifrats[i]);
-            System.out.printf("%-34s -> %s%n", msgsXifrats[i], msg);
-            
-        }
-    
+        return xifrada.toString();
     }
-
-        public static String xifraDesxifra(String msg, boolean xifra){
-            StringBuilder xifrada = new StringBuilder();
-            char[] permutat = permutaAlfabet(ALFABET);
-            for (int i = 0; i < msg.length(); i++) {
-                char c = msg.charAt(i);
-                xifrada.append(retornaCaracterXifratODesxifrat(c, xifra, permutat));
-                permutat = permutaAlfabet(permutat);
-            }
-            return xifrada.toString();
-        }
 
     public static char retornaCaracterXifratODesxifrat(char caracter, boolean xifra, char[] permutat){
         char[] alfabetOriginal =new char[ALFABET.length];
@@ -86,5 +64,28 @@ public class Polialfabetic {
             alfabetPermutat[i]= llistaAlfabet.get(i);
         }
         return alfabetPermutat;
+    }
+
+
+     public static void main(String[] args){
+        String msgs[] = {"Test 01 àrbritre, coixí, Perímetre",
+        "Test 02 Taüll, DÍA, año",
+        "Test 03 Peça, Òrrius, Bòvila"};
+        String msgsXifrats[] = new String[msgs.length];
+        System.out.println("Xifratge:\n--------");
+        for (int i = 0; i < msgs.length; i++) {
+            initRandom(CLAU);
+            msgsXifrats[i] = xifraPoliAlfa(msgs[i]);
+            System.out.printf("%-34s -> %s%n", msgs[i], msgsXifrats[i]);
+
+        }
+        System.out.println("Desxifratge:\n-----------");
+        for (int i = 0; i < msgs.length; i++) {
+            initRandom(CLAU);
+            String msg = desxifraPoliAlfa(msgsXifrats[i]);
+            System.out.printf("%-34s -> %s%n", msgsXifrats[i], msg);
+            
+        }
+    
     }
 }
