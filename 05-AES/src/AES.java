@@ -30,7 +30,8 @@ public class AES{
         cipher.init(Cipher.ENCRYPT_MODE,key,ivps);
         byte[] encrypted = cipher.doFinal(bMsg);
         // Combinar IV i part xifrada
-        byte[] bIv = ivps.getIV();
+        //byte[] bIv = ivps.getIV();
+        byte[] bIv = iv;
         byte[] tot = new byte[bIv.length + encrypted.length];
         for (int i = 0; i < bIv.length; i++) {
             tot[i] = bIv[i];
@@ -64,12 +65,13 @@ public class AES{
         byte[] decrypted = cipher.doFinal(missatge);
 
         // return String desxifrat
-        return decrypted.toString();
+        return new String(decrypted);
     }
 
     public static void obteIv(){
         SecureRandom rnd = new SecureRandom();
         rnd.nextBytes(iv);
+        System.out.println(iv);
     }
 
 
