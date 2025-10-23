@@ -1,5 +1,6 @@
 package iticbcn.xifratge;
-public class XifradorRotX{
+
+public class XifradorRotX implements Xifrador{
     static final char[] MINUSCULES = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz".toCharArray();
     static final char[] MAJUSCULES = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz".toUpperCase().toCharArray();
 

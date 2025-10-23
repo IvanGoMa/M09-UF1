@@ -1,7 +1,7 @@
 package iticbcn.xifratge;
-
+import iticbcn.xifratge.TextXifrat;
 import java.util.*;
-public class XifradorMonoalfabetic {
+public class XifradorMonoalfabetic implements Xifrador {
     static final char[] ALFABET = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz".toUpperCase().toCharArray();
     private static final char[] PERMUTAT = permutaAlfabet(ALFABET);
 
@@ -27,8 +27,8 @@ public class XifradorMonoalfabetic {
         return xifrada.toString();
     }
 
-    public String xifraMonoAlfa(String cadena){
-        return xifraODesxifra(cadena, true);
+    public TextXifrat xifra(String cadena, String nula) throws ClauNoSuportada{
+        return TextXifrat(xifraODesxifra(cadena, true));
     }
     public String desxifraMonoAlfa(String cadena){
         return xifraODesxifra(cadena, false);

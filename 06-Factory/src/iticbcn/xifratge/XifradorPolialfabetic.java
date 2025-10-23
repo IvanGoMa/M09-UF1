@@ -2,7 +2,7 @@ package iticbcn.xifratge;
 import java.util.*;
 
 
-public class XifradorPolialfabetic {
+public class XifradorPolialfabetic implements Xifrador{
     static final char[] ALFABET = "aàáäbcçdeèéëfghiìíïjklmnñoòóöpqrstuùúüvwxyz".toUpperCase().toCharArray();
     char [] PERMUTAT;
     static private final long CLAU = 1234;
