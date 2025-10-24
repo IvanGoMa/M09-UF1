@@ -17,5 +17,6 @@ public class TextXifrat {
     public byte[] getBytes(){
         return xifrat;
     }
+    
 
 }

@@ -50,44 +50,10 @@ public class XifradorRotX implements Xifrador{
         return resultat.toString();
     }
 
-    public String xifraRotX(String cadena, int desplaçament){
-        return xifraDesxifra(cadena, desplaçament, true);
+    public TextXifrat xifra(String cadena, String desplaçament){
+        return new TextXifrat(xifraDesxifra(cadena, Integer.parseInt(desplaçament), true));
     }
-    public String desxifraRotX(String cadena, int desplaçament){
-        return xifraDesxifra(cadena, desplaçament, false);
-    }
-    public void forcaBrutaRotX(String cadenaXifrada){
-        for (int i = 0; i < MAJUSCULES.length; i++) {
-            System.out.println("(" + i +")->" +desxifraRotX(cadenaXifrada, i));
-        }
-    }
-    public void main(String[] args) {
-        System.out.println(desxifraRotX("ZAÀ",2));
-        
-
-        String [] proves = {"ABC","XYZ","Hola, Mr. calçot","Perdó, per tú què és?"};
-        String [] xifrades = new String[proves.length];
-        String [] desxifrades = new String[proves.length];
-
-        System.out.println("Xifrat");
-        System.out.println("------");
-        for (int i = 0; i < proves.length; i++) {
-            xifrades[i] = xifraRotX(proves[i], i*2);
-            System.out.printf("(%d)-%s\t\t\t\t=> %s\n",i*2,proves[i],xifrades[i]);
-        }
-        System.out.println();
-        System.out.println("Desxifrat");
-        System.out.println("---------");
-        for (int i = 0; i < xifrades.length; i++) {
-            desxifrades[i] = desxifraRotX(xifrades[i], i*2);
-            System.out.printf("(%d)-%s\t\t\t\t=> %s\n",i*2,xifrades[i],desxifrades[i]);
-        }
-
-        String missatgeXifrat = xifraRotX(proves[proves.length-1], 13);
-        System.out.println();
-        System.out.println("Missatge xifrat: " + missatgeXifrat);
-        System.out.println("----------------");
-        forcaBrutaRotX(missatgeXifrat);
-        
+    public String desxifra(TextXifrat cadena, String desplaçament){
+        return xifraDesxifra(new String(cadena.getBytes()), Integer.parseInt((desplaçament)), false);
     }
 }

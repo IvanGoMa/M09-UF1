@@ -12,12 +12,12 @@ public class XifradorPolialfabetic implements Xifrador{
         random = new Random(CLAU);
     }
 
-    public String xifraPoliAlfa(String msg){
-        return xifraDesxifra(msg, true);
+    public TextXifrat xifra(String msg, String clau){
+        return new TextXifrat(xifraDesxifra(msg, true));
     }
 
-    public String desxifraPoliAlfa(String msg){
-        return xifraDesxifra(msg, false);
+    public String desxifra(TextXifrat msg, String clau){
+        return xifraDesxifra(new String(msg.getBytes()), false);
     }
 
     public String xifraDesxifra(String msg, boolean xifra){
@@ -69,25 +69,4 @@ public class XifradorPolialfabetic implements Xifrador{
     }
 
 
-     public void main(String[] args){
-        String msgs[] = {"Test 01 àrbritre, coixí, Perímetre",
-        "Test 02 Taüll, DÍA, año",
-        "Test 03 Peça, Òrrius, Bòvila"};
-        String msgsXifrats[] = new String[msgs.length];
-        System.out.println("Xifratge:\n--------");
-        for (int i = 0; i < msgs.length; i++) {
-            initRandom(CLAU);
-            msgsXifrats[i] = xifraPoliAlfa(msgs[i]);
-            System.out.printf("%-34s -> %s%n", msgs[i], msgsXifrats[i]);
-
-        }
-        System.out.println("Desxifratge:\n-----------");
-        for (int i = 0; i < msgs.length; i++) {
-            initRandom(CLAU);
-            String msg = desxifraPoliAlfa(msgsXifrats[i]);
-            System.out.printf("%-34s -> %s%n", msgsXifrats[i], msg);
-            
-        }
-    
-    }
 }

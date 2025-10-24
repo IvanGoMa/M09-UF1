@@ -16,7 +16,7 @@ public class XifradorAES implements Xifrador{
 
     private byte[] iv = new byte[MIDA_IV];
 
-    public byte[] xifraAES(String msg, String password) throws Exception{
+    public TextXifrat xifra(String msg, String password) throws ClauNoSuportada, Exception{
         // Obtenir els bytes de l'String
         byte[] bMsg = msg.getBytes();
         // Genera IvParameterSpec
@@ -41,19 +41,19 @@ public class XifradorAES implements Xifrador{
             tot[bIv.length+i] = encrypted[i];
         }
         // return iv+msgxifrat
-        return tot;
+        return new TextXifrat(tot);
     }
 
-    public String desxifraAES(byte[] bMsgXifrat, String password) throws Exception{
+    public String desxifra(TextXifrat bMsgXifrat, String password) throws Exception{
         // Extreure l'IV
         byte[] bIv = new byte[MIDA_IV];
         for (int i = 0; i < bIv.length; i++) {
-            bIv[i] = bMsgXifrat[i];
+            bIv[i] = bMsgXifrat.getBytes()[i];
         }
         // Extreure la part xifrada.
-        byte[] missatge = new byte[bMsgXifrat.length - MIDA_IV];
+        byte[] missatge = new byte[bMsgXifrat.getBytes().length - MIDA_IV];
         for (int i = 0; i < missatge.length; i++) {
-            missatge[i] = bMsgXifrat[MIDA_IV+i];
+            missatge[i] = bMsgXifrat.getBytes()[MIDA_IV+i];
         } 
         // Fer hash de la clau
         MessageDigest digest = MessageDigest.getInstance(ALGORISME_HASH);
@@ -75,26 +75,4 @@ public class XifradorAES implements Xifrador{
         System.out.println(iv);
     }
 
-
-    public void main(String[] args) {
-        String msgs[] = {"Lorem ipsum dicet","Hola Andrés cómo está tu cuñado","Àgora ïlla Ôtto"};
-        for (int i = 0; i < msgs.length; i++) {
-            String msg = msgs[i];
-
-            byte[] bXifrats = null;
-            String desxifrat = "";
-            try{
-                bXifrats = xifraAES(msg, CLAU);
-                desxifrat = desxifraAES(bXifrats, CLAU);
-            }
-            catch (Exception e){
-                System.err.println("Error de xifrat: "
-                + e.getLocalizedMessage());
-            }
-            System.out.println("----------------");
-            System.out.println("Msg: " + msg);
-            System.out.println("Enc: " + new String(bXifrats));
-            System.out.println("DEC: " + desxifrat);
-        }
-    }
 }
